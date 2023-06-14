@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useGuestsSection } from "@ratatouille/modules/order/react/sections/use-guests-section";
+import { useGuestsSection } from "@ratatouille/modules/order/react/sections/guest/use-guests-section";
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 import { ChangeEvent } from "react";
 
