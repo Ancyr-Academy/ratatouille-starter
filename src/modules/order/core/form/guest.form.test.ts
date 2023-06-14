@@ -1,6 +1,3 @@
-// Ajouter un guest
-// Retirer un guest
-
 import { IIDProvider } from "@ratatouille/modules/core/id-provider";
 import { GuestForm } from "@ratatouille/modules/order/core/form/guest.form";
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
@@ -176,5 +173,10 @@ describe("update guest", () => {
   ])(`should change the %s of the guest`, ({ key, value }) => {
     const state = form.updateGuest(stateWithOneUser, "1", key, value);
     expect(state.guests[0][key]).toEqual(value);
+  });
+
+  it("should do nothing if the id is not assigned", () => {
+    const state = form.updateGuest(stateWithOneUser, "2", "firstName", "Jane");
+    expect(state.guests).toEqual(stateWithOneUser.guests);
   });
 });
