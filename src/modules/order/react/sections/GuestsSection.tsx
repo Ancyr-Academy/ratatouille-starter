@@ -3,7 +3,9 @@
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
+  FormControlLabel,
   FormLabel,
   Grid,
   TextField,
@@ -28,6 +30,8 @@ export const GuestsSection: React.FC<{}> = () => {
               age={guest.age}
               onChange={presenter.updateGuest}
               remove={presenter.removeGuest}
+              isOrganizer={guest.id === presenter.form.organizerId}
+              changeOrganizer={presenter.changeOrganizer}
             />
           </Box>
         ))}
@@ -46,7 +50,11 @@ export const GuestsSection: React.FC<{}> = () => {
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="contained" onClick={presenter.onNext}>
+          <Button
+            variant="contained"
+            onClick={presenter.onNext}
+            disabled={presenter.isSubmittable === false}
+          >
             Suivant
           </Button>
         </Grid>
@@ -60,9 +68,20 @@ const GuestRow: React.FC<{
   firstName: string;
   lastName: string;
   age: number;
+  isOrganizer: boolean;
   onChange: (id: string, key: string, value: any) => void;
   remove: (id: string) => void;
-}> = ({ id, firstName, lastName, age, onChange, remove }) => {
+  changeOrganizer: (id: string) => void;
+}> = ({
+  id,
+  firstName,
+  lastName,
+  age,
+  isOrganizer,
+  onChange,
+  remove,
+  changeOrganizer,
+}) => {
   return (
     <Box>
       <Grid container direction={"row"} alignItems={"center"} spacing={1}>
@@ -92,6 +111,17 @@ const GuestRow: React.FC<{
               onChange={(e) => onChange(id, "age", parseInt(e.target.value))}
             />
           </FormControl>
+        </Grid>
+        <Grid item>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isOrganizer}
+                onChange={() => changeOrganizer(id)}
+              />
+            }
+            label="Organisateur"
+          />
         </Grid>
         <Box sx={{ marginTop: 2 }}>
           <Button
