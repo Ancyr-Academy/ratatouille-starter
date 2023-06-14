@@ -10,7 +10,8 @@ export const useGuestsSection = () => {
   }
 
   function removeGuest(id: string) {
-    setGuests((guests) => guests.filter((guest) => guest.id !== id));
+    const newState = guestForm.current.removeGuest(guests, id);
+    setGuests(newState);
   }
 
   function updateGuest(id: string, key: string, value: any) {}
@@ -26,6 +27,8 @@ export const useGuestsSection = () => {
   const { idProvider } = useDependencies();
   const guestForm = useRef(new GuestForm(idProvider));
   const [guests, setGuests] = useState<OrderingDomainModel.Guest[]>([]);
+
+  console.log(guests);
 
   return {
     addGuest,

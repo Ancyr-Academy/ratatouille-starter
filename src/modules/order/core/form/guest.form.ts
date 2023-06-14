@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 import { IIDProvider } from "@ratatouille/modules/core/id-provider";
 
@@ -15,5 +14,9 @@ export class GuestForm {
         age: 0,
       },
     ];
+  }
+
+  removeGuest(state: OrderingDomainModel.Guest[], id: string) {
+    return state.filter((guest) => guest.id !== id);
   }
 }
