@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useGuestsSection } from "@ratatouille/modules/order/react/sections/use-guests-section";
+import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
+import { ChangeEvent } from "react";
 
 export const GuestsSection: React.FC<{}> = () => {
   const presenter = useGuestsSection();
@@ -22,7 +24,7 @@ export const GuestsSection: React.FC<{}> = () => {
       <Typography variant="h5">Invités</Typography>
       <Grid sx={{ paddingTop: 2 }} rowSpacing={4}>
         {presenter.form.guests.map((guest) => (
-          <Box key={Math.random()}>
+          <Box key={guest.id}>
             <GuestRow
               id={guest.id}
               firstName={guest.firstName}
@@ -69,7 +71,11 @@ const GuestRow: React.FC<{
   lastName: string;
   age: number;
   isOrganizer: boolean;
-  onChange: (id: string, key: string, value: any) => void;
+  onChange: <T extends keyof OrderingDomainModel.Guest>(
+    id: string,
+    key: T,
+    value: OrderingDomainModel.Guest[T]
+  ) => void;
   remove: (id: string) => void;
   changeOrganizer: (id: string) => void;
 }> = ({
@@ -90,7 +96,9 @@ const GuestRow: React.FC<{
             <FormLabel>Prénom</FormLabel>
             <TextField
               value={firstName}
-              onChange={(e) => onChange(id, "firstName", e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                onChange(id, "firstName", e.target.value)
+              }
             />
           </FormControl>
         </Grid>
@@ -99,7 +107,9 @@ const GuestRow: React.FC<{
             <FormLabel>Nom</FormLabel>
             <TextField
               value={lastName}
-              onChange={(e) => onChange(id, "lastName", e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                onChange(id, "lastName", e.target.value)
+              }
             />
           </FormControl>
         </Grid>
@@ -108,7 +118,9 @@ const GuestRow: React.FC<{
             <FormLabel>Âge</FormLabel>
             <TextField
               value={age}
-              onChange={(e) => onChange(id, "age", parseInt(e.target.value))}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                onChange(id, "age", parseInt(e.target.value))
+              }
             />
           </FormControl>
         </Grid>

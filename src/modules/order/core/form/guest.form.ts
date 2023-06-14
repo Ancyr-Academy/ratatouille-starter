@@ -36,4 +36,25 @@ export class GuestForm {
   isSubmittable(state: OrderingDomainModel.Form) {
     return state.organizerId !== null;
   }
+
+  updateGuest<T extends keyof OrderingDomainModel.Guest>(
+    state: OrderingDomainModel.Form,
+    id: string,
+    key: T,
+    value: OrderingDomainModel.Guest[T]
+  ) {
+    return {
+      ...state,
+      guests: state.guests.map((guest) => {
+        if (guest.id === id) {
+          return {
+            ...guest,
+            [key]: value,
+          };
+        } else {
+          return guest;
+        }
+      }),
+    };
+  }
 }
