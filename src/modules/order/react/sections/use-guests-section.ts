@@ -28,8 +28,6 @@ export const useGuestsSection = () => {
   const guestForm = useRef(new GuestForm(idProvider));
   const [guests, setGuests] = useState<OrderingDomainModel.Guest[]>([]);
 
-  console.log(guests);
-
   return {
     addGuest,
     removeGuest,
