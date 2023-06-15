@@ -1,29 +1,31 @@
-import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
-import { TableFactory } from "@ratatouille/modules/order/core/model/table.factory";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { AppState, useAppDispatch } from "@ratatouille/modules/store/store";
+import { orderingSlice } from "@ratatouille/modules/order/core/store/ordering.slice";
+import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 
 export const useTable = () => {
   function assignTable(tableId: string) {
     setAssignedTableId(tableId);
   }
 
-  function onNext() {}
-
-  function onPrevious() {}
-
-  function isSubmittable() {
-    return false;
+  function onNext() {
+    dispatch(orderingSlice.actions.setStep(OrderingDomainModel.Step.MEALS));
   }
 
-  const [assignedTableId, setAssignedTableId] = useState<string | null>(null);
+  function onPrevious() {
+    dispatch(orderingSlice.actions.setStep(OrderingDomainModel.Step.GUESTS));
+  }
 
-  const availableTables: OrderingDomainModel.Table[] = [
-    TableFactory.create(),
-    TableFactory.create({
-      id: "table-2",
-      title: "Centre de la pièce",
-    }),
-  ];
+  function isSubmittable() {
+    return assignedTableId !== null;
+  }
+
+  const dispatch = useAppDispatch();
+  const [assignedTableId, setAssignedTableId] = useState<string | null>(null);
+  const availableTables = useSelector(
+    (state: AppState) => state.ordering.availableTables.data
+  );
 
   return {
     assignTable,

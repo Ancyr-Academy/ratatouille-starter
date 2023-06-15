@@ -30,7 +30,7 @@ export const orderingSlice = createSlice({
   initialState,
   reducers: {
     setStep: (state, action: PayloadAction<OrderingDomainModel.Step>) => {
-      state.step = OrderingDomainModel.Step.TABLE;
+      state.step = action.payload;
     },
     handleTablesLoading: (state) => {
       state.availableTables.status = "loading";
