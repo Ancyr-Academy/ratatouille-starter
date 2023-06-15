@@ -18,4 +18,10 @@ export namespace OrderingDomainModel {
     lastName: string;
     age: number;
   };
+
+  export type Table = {
+    id: string;
+    title: string;
+    capacity: number;
+  };
 }
