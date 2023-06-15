@@ -7,10 +7,26 @@ export namespace OrderingDomainModel {
     RESERVED = 4,
   }
 
+  export enum MealType {
+    ENTRY = "ENTRY",
+    MAIN_COURSE = "MAIN_COURSE",
+    DESSERT = "DESSERT",
+    DRINK = "DRINK",
+  }
+
   export type Form = {
     guests: Guest[];
     organizerId: string | null;
     tableId: string | null;
+  };
+
+  export type MealId = string;
+
+  export type Meal = {
+    id: MealId;
+    title: string;
+    type: MealType;
+    requiredAge: number | null;
   };
 
   export type Guest = {
@@ -18,6 +34,12 @@ export namespace OrderingDomainModel {
     firstName: string;
     lastName: string;
     age: number;
+    meals: {
+      entry: MealId | null;
+      mainCourse: MealId | null;
+      dessert: MealId | null;
+      drink: MealId | null;
+    };
   };
 
   export type Table = {
