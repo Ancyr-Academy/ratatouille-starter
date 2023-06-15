@@ -1,6 +1,3 @@
-// Assign main course
-// Assign dessert
-// Assign drink
 // Is Submittable
 
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
