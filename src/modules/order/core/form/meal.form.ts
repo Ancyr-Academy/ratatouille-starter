@@ -1,4 +1,3 @@
-// Get selectable entries
 // Get selectable main courses
 // Get selectable desserts
 // Get selectable drinks

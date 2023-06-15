@@ -76,17 +76,25 @@ const mealForm = new MealForm();
 
 describe("Selecting meals", () => {
   describe("selecting entries", () => {
-    it("when there are no meals available, it should return an empty array", () => {
-      const result = mealForm.getSelectableEntries([], adult);
-      expect(result).toEqual([]);
-    });
-    it("when meals are available, it should return adult meals", () => {
-      const result = mealForm.getSelectableEntries(meals, adult);
-      expect(result).toEqual([regularEntry, adultEntry]);
-    });
-    it("when meals are available, it should return children-only meals", () => {
-      const result = mealForm.getSelectableEntries(meals, children);
-      expect(result).toEqual([regularEntry]);
+    it.each([
+      {
+        meals: [],
+        guest: adult,
+        expected: [],
+      },
+      {
+        meals,
+        guest: adult,
+        expected: [regularEntry, adultEntry],
+      },
+      {
+        meals,
+        guest: children,
+        expected: [regularEntry],
+      },
+    ])(``, ({ meals, guest, expected }) => {
+      const result = mealForm.getSelectableEntries(meals, guest);
+      expect(result).toEqual(expected);
     });
   });
 });
