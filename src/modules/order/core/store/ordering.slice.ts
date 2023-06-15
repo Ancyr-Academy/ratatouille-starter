@@ -10,6 +10,11 @@ export type OrderingState = {
     status: "idle" | "loading" | "success" | "error";
     error: string | null;
   };
+  availableMeals: {
+    data: OrderingDomainModel.Meal[];
+    status: "idle" | "loading" | "success" | "error";
+    error: string | null;
+  };
 };
 
 export const initialState: OrderingState = {
@@ -20,6 +25,11 @@ export const initialState: OrderingState = {
     tableId: null,
   },
   availableTables: {
+    status: "idle",
+    error: null,
+    data: [],
+  },
+  availableMeals: {
     status: "idle",
     error: null,
     data: [],
@@ -53,6 +63,18 @@ export const orderingSlice = createSlice({
     },
     chooseTable(state, action: PayloadAction<string>) {
       state.form.tableId = action.payload;
+    },
+    storeMeals: (state, action: PayloadAction<OrderingDomainModel.Meal[]>) => {
+      state.availableMeals.data = action.payload;
+      state.availableMeals.status = "success";
+    },
+    handleMealsLoading: (state) => {
+      state.availableMeals.status = "loading";
+      state.availableMeals.error = null;
+    },
+    handleMealsError: (state, action: PayloadAction<string>) => {
+      state.availableMeals.status = "error";
+      state.availableMeals.error = action.payload;
     },
   },
 });
