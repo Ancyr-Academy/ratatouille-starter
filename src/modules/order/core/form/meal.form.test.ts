@@ -266,3 +266,49 @@ describe("Assigning Drink", () => {
     expect(result).toEqual(form);
   });
 });
+
+const unsubmittableForm: OrderingDomainModel.Form = {
+  guests: [
+    GuestFactory.create({
+      meals: {
+        entry: null,
+        mainCourse: null,
+        dessert: null,
+        drink: null,
+      },
+    }),
+  ],
+  organizerId: adult.id,
+  tableId: "1",
+};
+
+const submittableForm: OrderingDomainModel.Form = {
+  guests: [
+    GuestFactory.create({
+      meals: {
+        entry: null,
+        mainCourse: regularMainCourse.id,
+        dessert: null,
+        drink: null,
+      },
+    }),
+  ],
+  organizerId: adult.id,
+  tableId: "1",
+};
+
+describe("Is submittable", () => {
+  it.each([
+    {
+      form: submittableForm,
+      expected: true,
+    },
+    {
+      form: unsubmittableForm,
+      expected: false,
+    },
+  ])(`should return if the form is submittable`, ({ form, expected }) => {
+    const isSubmittable = mealForm.isSubmittable(form);
+    expect(isSubmittable).toEqual(expected);
+  });
+});
