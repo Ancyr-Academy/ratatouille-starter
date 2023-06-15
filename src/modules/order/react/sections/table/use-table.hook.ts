@@ -4,6 +4,7 @@ import { AppState, useAppDispatch } from "@ratatouille/modules/store/store";
 import { orderingSlice } from "@ratatouille/modules/order/core/store/ordering.slice";
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 import { chooseTable } from "@ratatouille/modules/order/core/usecases/choose-table.usecase";
+import { invariant } from "@ratatouille/modules/shared/invariant";
 
 export const useTable = () => {
   function assignTable(tableId: string) {
@@ -11,6 +12,7 @@ export const useTable = () => {
   }
 
   function onNext() {
+    invariant(assignedTableId !== null, "Table must be assigned");
     dispatch(chooseTable(assignedTableId!));
   }
 
