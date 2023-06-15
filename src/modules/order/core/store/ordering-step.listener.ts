@@ -13,4 +13,13 @@ export const registerOrderingStepListener = (
       );
     },
   });
+
+  listener.startListening({
+    actionCreator: orderingSlice.actions.chooseTable,
+    effect: (_, api) => {
+      api.dispatch(
+        orderingSlice.actions.setStep(OrderingDomainModel.Step.MEALS)
+      );
+    },
+  });
 };
