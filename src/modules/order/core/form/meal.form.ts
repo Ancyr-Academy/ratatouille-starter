@@ -1,6 +1,3 @@
-// Get selectable main courses
-// Get selectable desserts
-// Get selectable drinks
 // Assign entry
 // Assign main course
 // Assign dessert
@@ -36,6 +33,45 @@ export class MealForm {
       (meal) =>
         !(
           !this.isMealType(meal, OrderingDomainModel.MealType.ENTRY) ||
+          !this.hasRequiredAge(meal, guest)
+        )
+    );
+  }
+
+  getSelectableMainCourses(
+    meals: OrderingDomainModel.Meal[],
+    guest: OrderingDomainModel.Guest
+  ) {
+    return meals.filter(
+      (meal) =>
+        !(
+          !this.isMealType(meal, OrderingDomainModel.MealType.MAIN_COURSE) ||
+          !this.hasRequiredAge(meal, guest)
+        )
+    );
+  }
+
+  getSelectableDesserts(
+    meals: OrderingDomainModel.Meal[],
+    guest: OrderingDomainModel.Guest
+  ) {
+    return meals.filter(
+      (meal) =>
+        !(
+          !this.isMealType(meal, OrderingDomainModel.MealType.DESSERT) ||
+          !this.hasRequiredAge(meal, guest)
+        )
+    );
+  }
+
+  getSelectableDrinks(
+    meals: OrderingDomainModel.Meal[],
+    guest: OrderingDomainModel.Guest
+  ) {
+    return meals.filter(
+      (meal) =>
+        !(
+          !this.isMealType(meal, OrderingDomainModel.MealType.DRINK) ||
           !this.hasRequiredAge(meal, guest)
         )
     );
