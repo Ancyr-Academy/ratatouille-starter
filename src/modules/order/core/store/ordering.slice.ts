@@ -78,7 +78,6 @@ export const orderingSlice = createSlice({
     },
     chooseMeal: (state, action: PayloadAction<OrderingDomainModel.Form>) => {
       state.form = action.payload;
-      state.step = OrderingDomainModel.Step.SUMMARY;
     },
   },
 });
