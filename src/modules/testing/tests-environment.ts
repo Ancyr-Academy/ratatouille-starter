@@ -3,6 +3,7 @@ import { Dependencies } from "@ratatouille/modules/store/dependencies";
 import { StubTableGateway } from "@ratatouille/modules/order/core/testing/stub.table-gateway";
 import { StubMealGateway } from "@ratatouille/modules/order/core/testing/stub.meal-gateway";
 import { StubIDProvider } from "@ratatouille/modules/core/stub.id-provider";
+import { MockReservationGateway } from "@ratatouille/modules/order/core/testing/mock.reservation-gateway";
 
 /**
  * Create testing dependencies with provided defaults
@@ -15,6 +16,7 @@ const createDependencies = (
   idProvider: new StubIDProvider(),
   tableGateway: new StubTableGateway(),
   mealGateway: new StubMealGateway(),
+  reservationGateway: new MockReservationGateway(),
   ...dependencies,
 });
 
