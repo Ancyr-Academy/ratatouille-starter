@@ -13,6 +13,7 @@ describe("Choose guests", () => {
         }),
       ],
       organizerId: null,
+      tableId: null,
     };
 
     await store.dispatch(chooseGuests(form));
