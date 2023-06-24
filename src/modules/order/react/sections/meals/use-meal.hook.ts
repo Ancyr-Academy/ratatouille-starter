@@ -6,7 +6,7 @@ import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/order
 import { AppState, useAppDispatch } from "@ratatouille/modules/store/store";
 import { orderingSlice } from "@ratatouille/modules/order/core/store/ordering.slice";
 import { chooseMeal } from "@ratatouille/modules/order/core/usecases/choose-meal.usecase";
-import { selectForm } from "@ratatouille/modules/order/react/sections/guest/form.selector";
+import { selectForm } from "@ratatouille/modules/order/core/selectors/form.selector";
 
 export const useMeal = () => {
   function findGuestById(guestId: string) {

@@ -2,7 +2,7 @@ import { GuestFactory } from "@ratatouille/modules/order/core/model/guest.factor
 import { MealFactory } from "@ratatouille/modules/order/core/model/meal.factory";
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 import { TableFactory } from "@ratatouille/modules/order/core/model/table.factory";
-import { selectSummary } from "@ratatouille/modules/order/react/sections/summary/summary.selector";
+import { selectSummary } from "@ratatouille/modules/order/core/selectors/summary.selector";
 import { createTestState } from "@ratatouille/modules/testing/tests-environment";
 
 it("should return a summary when the guest has choosen every meal", () => {

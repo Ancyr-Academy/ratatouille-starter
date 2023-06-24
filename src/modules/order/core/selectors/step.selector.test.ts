@@ -1,6 +1,6 @@
 import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/ordering.domain-model";
 import { createTestState } from "@ratatouille/modules/testing/tests-environment";
-import { selectStep } from "@ratatouille/modules/order/react/pages/order/step.selector";
+import { selectStep } from "@ratatouille/modules/order/core/selectors/step.selector";
 
 const orderingState: OrderingDomainModel.State = {
   step: OrderingDomainModel.Step.GUESTS,
