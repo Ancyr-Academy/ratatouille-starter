@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "pretty": "pretty-quick --staged",
     "prepare": "husky install",
-    "hook:precommit": "pnpm typecheck && pnpm run lint && pnpm run pretty"
+    "hook:precommit": "pnpm typecheck && pnpm run lint && pnpm run pretty",
+    "hook:prepush": "pnpm run test"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
