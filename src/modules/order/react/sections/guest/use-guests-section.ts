@@ -5,6 +5,7 @@ import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/order
 import { AppState, useAppDispatch } from "@ratatouille/modules/store/store";
 import { chooseGuests } from "@ratatouille/modules/order/core/usecases/choose-guests.usecase";
 import { useSelector } from "react-redux";
+import { selectForm } from "@ratatouille/modules/order/react/sections/guest/form.selector";
 
 export const useGuestsSection = () => {
   function addGuest() {
@@ -39,7 +40,7 @@ export const useGuestsSection = () => {
     return guestForm.current.isSubmittable(form);
   }
 
-  const initialForm = useSelector((state: AppState) => state.ordering.form);
+  const initialForm = useSelector(selectForm);
 
   const dispatch = useAppDispatch();
   const { idProvider } = useDependencies();
