@@ -6,6 +6,7 @@ import { OrderingDomainModel } from "@ratatouille/modules/order/core/model/order
 import { AppState, useAppDispatch } from "@ratatouille/modules/store/store";
 import { orderingSlice } from "@ratatouille/modules/order/core/store/ordering.slice";
 import { chooseMeal } from "@ratatouille/modules/order/core/usecases/choose-meal.usecase";
+import { selectForm } from "@ratatouille/modules/order/react/sections/guest/form.selector";
 
 export const useMeal = () => {
   function findGuestById(guestId: string) {
@@ -89,7 +90,7 @@ export const useMeal = () => {
 
   const mealForm = useRef(new MealForm());
 
-  const initialForm = useSelector((state: AppState) => state.ordering.form);
+  const initialForm = useSelector(selectForm);
   const [form, setForm] = useState<OrderingDomainModel.Form>(initialForm);
 
   return {
