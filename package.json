@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest",
     "typecheck": "tsc --noEmit",
     "pretty": "pretty-quick --staged",
     "prepare": "husky install",
