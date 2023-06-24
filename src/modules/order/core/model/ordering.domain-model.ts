@@ -81,7 +81,7 @@ export namespace OrderingDomainModel {
     reservation: ReservationStatus;
   };
 
-  type MealSummary = {
+  export type MealSummary = {
     id: string;
     title: string;
   };
